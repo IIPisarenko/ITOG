@@ -272,6 +272,7 @@ class OrderManagementApp:
         """
         product = next((product for product in self.db.get_all_products() if product[1] == product_name), None)
         return product[0] if product else None
+        self.load_products()
 
     def create_client_widgets(self):
         """
@@ -331,6 +332,7 @@ class OrderManagementApp:
         self.entry_1.delete(0, tk.END)
         self.entry_2.delete(0, tk.END)
         self.entry_3.delete(0, tk.END)
+        self.load_clients()
 
     def delete_entry(self):
         """
@@ -346,6 +348,7 @@ class OrderManagementApp:
         self.db.delete_client(name)  # Предполагается, что этот метод реализован
         self.task_listbox.delete(selected_index)
         messagebox.showinfo("Удаление", f"Клиент '{name}' успешно удален.")
+        self.load_clients()
 
     def is_valid_name(self, name):
         """
@@ -451,7 +454,7 @@ class OrderManagementApp:
         """
         tk.Button(self.charts_tab, text="ТОП-5 клиентов", command=self.show_top_clients).pack(pady=10)
         tk.Button(self.charts_tab, text="Динамика заказов", command=self.show_order_trends).pack(pady=10)
-        tk.Button(self.charts_tab, text="Сеть клиентов", command=self.show_client_network).pack(pady=10)
+        tk.Button(self.charts_tab, text="География клиентов", command=self.show_client_network).pack(pady=10)
 
     def show_top_clients(self):
         """
