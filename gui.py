@@ -1,3 +1,4 @@
+
 import tkinter as tk
 from tkinter import messagebox, filedialog
 from tkinter import ttk
@@ -199,6 +200,7 @@ class OrderManagementApp:
         tk.Label(self.orders_tab, text="Выберите товар:", font=('Arial', 10, 'bold')).pack(pady=5)
         self.product_dropdown = ttk.Combobox(self.orders_tab, textvariable=self.product_var)
         self.product_dropdown.pack(pady=5)
+        self.load_products()
 
         tk.Button(self.orders_tab, text="Добавить заказ", command=self.add_order).pack(pady=10)
 
